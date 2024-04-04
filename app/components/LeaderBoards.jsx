@@ -8,7 +8,7 @@ const Leaderboards = () => {
     const fetchLeaderBoard = async () => {
       // Logic to fetch the leaderboard
       const response = await axios
-        .get("http://localhost:5000/api/sudoku/scores")
+        .get("http://164.92.175.112:5000/api/sudoku/scores")
         .then((response) => {
           console.log(response);
           setTopScores(response.data.scores);

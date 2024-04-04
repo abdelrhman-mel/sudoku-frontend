@@ -22,7 +22,7 @@ const SignInPage = () => {
     // You can use axios to make a POST request to your backend API
     console.log(username, password);
     const response = await axios
-      .post("http://localhost:5000/api/signup", { username, password })
+      .post("http://164.92.175.112:5000/api/signup", { username, password })
       .then((response) => {
         console.log(response);
         // Handle successful sign in

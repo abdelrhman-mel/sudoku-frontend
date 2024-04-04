@@ -55,7 +55,9 @@ const IndexPage = () => {
     const token = localStorage.getItem("token");
     // Logic to fetch a new puzzle
     const response = await axios
-      .post("http://localhost:5000/api/sudoku/puzzles", { dif: difficulty })
+      .post("http://164.92.175.112:5000/api/sudoku/puzzles", {
+        dif: difficulty,
+      })
       .then((response) => {
         console.log(response);
 
