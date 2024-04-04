@@ -52,11 +52,10 @@ const IndexPage = () => {
     setGameOver(false); // Reset game over status
     setTimerRunning(true); // Start the timer
     e.preventDefault();
+    const token = localStorage.getItem("token");
     // Logic to fetch a new puzzle
     const response = await axios
-      .post("http://localhost:5000/api/sudoku/puzzles", {
-        dif: difficulty,
-      })
+      .post("http://localhost:5000/api/sudoku/puzzles", { dif: difficulty })
       .then((response) => {
         console.log(response);
 
