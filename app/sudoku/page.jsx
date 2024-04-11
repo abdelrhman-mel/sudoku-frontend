@@ -8,7 +8,6 @@ import LeaderBoards from "../components/LeaderBoards";
 const IndexPage = () => {
   const [gameOver, setGameOver] = useState(false);
   const [puzzle, setPuzzle] = useState([]);
-  const [leaderBoard, setLeaderBoard] = useState([]);
   const [difficulty, setDifficulty] = useState("easy");
   const [timerRunning, setTimerRunning] = useState(false);
   const [win, setWin] = useState(false);
@@ -29,38 +28,26 @@ const IndexPage = () => {
     return () => clearInterval(interval);
   }, []);
 
-  useEffect(() => {
-    fetchLeaderBoard();
-  }, []);
-
-  const fetchLeaderBoard = async () => {
-    // Logic to fetch the leaderboard
-    const response = await axios
-      .get("http://164.92.175.112:5000/api/sudoku/scores")
-      .then((response) => {
-        console.log(response);
-        setLeaderBoard(response.data.scores);
-      })
-      .catch((error) => {
-        // Handle sign in error
-        //make a alert message to the user with the backend response
-        alert(error);
-      });
-  };
-
   const generateGame = async (e) => {
     setGameOver(false); // Reset game over status
     setTimerRunning(true); // Start the timer
     e.preventDefault();
-    const token = localStorage.getItem("token");
     // Logic to fetch a new puzzle
-    const response = await axios
-      .post("http://164.92.175.112:5000/api/sudoku/puzzles", {
-        dif: difficulty,
-      })
+    const token = localStorage.getItem("token");
+    await axios
+      .post(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/sudoku/puzzles`,
+        {
+          dif: difficulty,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
       .then((response) => {
         console.log(response);
-
         setPuzzle(response.data.puzzle);
       })
       .catch((error) => {
@@ -74,7 +61,7 @@ const IndexPage = () => {
     const username = localStorage.getItem("username");
     // Logic to send the score to the leaderboard
     const response = await axios
-      .post("http://164.92.175.112:5000/api/sudoku/scores", {
+      .post(`${process.env.NEXT_PUBLIC_API_URL}/api/sudoku/scores`, {
         username: username,
         score: seconds,
       })

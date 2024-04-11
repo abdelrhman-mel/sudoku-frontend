@@ -6,9 +6,12 @@ const Leaderboards = () => {
   const [topScores, setTopScores] = useState([]);
   useEffect(() => {
     const fetchLeaderBoard = async () => {
+      const token = localStorage.getItem("token");
       // Logic to fetch the leaderboard
-      const response = await axios
-        .get("http://164.92.175.112:5000/api/sudoku/scores")
+      await axios
+        .get(`${process.env.NEXT_PUBLIC_API_URL}/api/sudoku/scores`, {
+          headers: { Authorization: `Bearer ${token}` },
+        })
         .then((response) => {
           console.log(response);
           setTopScores(response.data.scores);

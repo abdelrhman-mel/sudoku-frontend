@@ -12,15 +12,18 @@ export default function Home() {
   };
   return (
     <main>
-      <div className="justify-center mt-7 w-full align-middle">
+      <h1 className="text-6xl font-bold text-center mt-16">
+        Welcome to Sudoku
+      </h1>
+      <div className="w-100 flex justify-center">
         <button
-          className="flex bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 mr-4"
           onClick={handleSignIn}
         >
           Sign In
         </button>
         <button
-          className="flex bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+          className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mt-4 ml-4"
           onClick={handleSignUp}
         >
           Sign Up
