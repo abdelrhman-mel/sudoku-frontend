@@ -3,7 +3,7 @@ import React from "react";
 const Buttons = ({ onNewGame, onSubmit }) => {
   return (
     <div
-      className="buttons"
+      className="buttons mt-4"
       style={{ display: "flex", justifyContent: "center" }}
     >
       <button
