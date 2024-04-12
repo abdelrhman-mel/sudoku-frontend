@@ -168,7 +168,7 @@ const IndexPage = () => {
   return (
     <>
       <h1 className="text-4xl text-center mt-4 font-bold mb-3">Sudoku</h1>
-      <div className="container">
+      <div className="justify-center items-center">
         <SudokuGrid puzzle={puzzle} onChange={handleCellChange} />
         {timerRunning && (
           <div className="font-bold justify-center text-center text-3xl">
