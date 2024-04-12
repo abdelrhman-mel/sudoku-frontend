@@ -51,34 +51,41 @@ const IndexPage = () => {
         setPuzzle(response.data.puzzle);
       })
       .catch((error) => {
-        // Handle sign in error
         //make a alert message to the user with the backend response
-        alert(error);
+        alert("please sign in to play the game");
+        window.location.href = "/signin";
       });
   };
-
   const sendScore = async () => {
     const username = localStorage.getItem("username");
     // Logic to send the score to the leaderboard
     const response = await axios
-      .post(`${process.env.NEXT_PUBLIC_API_URL}/api/sudoku/scores`, {
-        username: username,
-        score: seconds,
-      })
+      .post(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/sudoku/scores`,
+        {
+          username: username,
+          score: seconds,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      )
       .then((response) => {
         console.log(response);
       })
       .catch((error) => {
-        // Handle sign in error
         //make a alert message to the user with the backend response
-        alert(error);
+        alert("please sign in to play the game");
+        window.location.href = "/signin";
       });
   };
 
   const handleSubmit = () => {
     // Logic to submit the solution
     if (isPuzzleSolved(puzzle)) {
-      setWin(true);
+      alert("Puzzle is solved You Win!");
       setTimerRunning(false);
       setSeconds(seconds);
       sendScore();
@@ -91,7 +98,7 @@ const IndexPage = () => {
 
   const handleCellChange = (row, col, value) => {
     //validate the input between 1 and 9
-    if (value < 1 || value > 9) {
+    if (value < 1 || value > 9 || isNaN(value) || value % 1 !== 0) {
       alert("Please enter a number between 1 and 9");
       return;
     }
@@ -160,14 +167,14 @@ const IndexPage = () => {
 
   return (
     <>
-      {win && (
-        <div className="text-9xl bg-green-600 text-white w-full h-full flex justify-center">
-          You Win!
-        </div>
-      )}
+      <h1 className="text-4xl text-center mt-4 font-bold mb-3">Sudoku</h1>
       <div className="container">
         <SudokuGrid puzzle={puzzle} onChange={handleCellChange} />
-        {timerRunning && <div className="timer">Time: {seconds} seconds</div>}
+        {timerRunning && (
+          <div className="font-bold justify-center text-center text-3xl">
+            Time: {seconds} seconds
+          </div>
+        )}
         {gameOver && <div className="game-over">Game Over</div>}
         <Buttons onNewGame={generateGame} onSubmit={handleSubmit} />
         <div className="mt-4">

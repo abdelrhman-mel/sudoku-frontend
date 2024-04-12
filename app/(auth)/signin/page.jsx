@@ -37,7 +37,7 @@ const SignInPage = () => {
       .catch((error) => {
         // Handle sign in error
         //make a alert message to the user with the backend response
-        alert(error);
+        alert("Invalid credentials");
       });
   };
 

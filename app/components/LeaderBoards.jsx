@@ -17,9 +17,8 @@ const Leaderboards = () => {
           setTopScores(response.data.scores);
         })
         .catch((error) => {
-          // Handle sign in error
-          //make a alert message to the user with the backend response
-          alert(error);
+          alert("please sign in to play the game");
+          window.location.href = "/signin";
         });
     };
     fetchLeaderBoard();
