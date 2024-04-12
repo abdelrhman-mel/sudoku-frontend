@@ -167,33 +167,38 @@ const IndexPage = () => {
 
   return (
     <>
-      <h1 className="text-4xl text-center mt-4 font-bold mb-3">Sudoku</h1>
-      <div className="justify-center items-center">
-        <SudokuGrid puzzle={puzzle} onChange={handleCellChange} />
-        {timerRunning && (
-          <div className="font-bold justify-center text-center text-3xl">
-            Time: {seconds} seconds
+      <div className="text-center justify-center items-center">
+        <h1 className="text-4xl text-center mt-4 font-bold mb-3">Sudoku</h1>
+        <div className="justify-center items-center">
+          <SudokuGrid puzzle={puzzle} onChange={handleCellChange} />
+          {timerRunning && (
+            <div className="font-bold justify-center text-center text-3xl">
+              Time: {seconds} seconds
+            </div>
+          )}
+          {gameOver && <div className="game-over">Game Over</div>}
+          <Buttons onNewGame={generateGame} onSubmit={handleSubmit} />
+          <div className="mt-4 justify-center items-center">
+            <label
+              htmlFor="difficulty"
+              className="mr-2 text-center justify-center font-bold"
+            >
+              Choose difficulty:
+            </label>
+            <select
+              id="difficulty"
+              value={difficulty}
+              onChange={handleDifficultyChange}
+              className="px-2 py-1 border border-gray-300 rounded-md font-bold text-center justify-center"
+            >
+              <option value="easy">Easy</option>
+              <option value="medium">Medium</option>
+              <option value="hard">Hard</option>
+              <option value="expert">Expert</option>
+              <option value="insane">Insane</option>
+            </select>
+            <LeaderBoards />
           </div>
-        )}
-        {gameOver && <div className="game-over">Game Over</div>}
-        <Buttons onNewGame={generateGame} onSubmit={handleSubmit} />
-        <div className="mt-4">
-          <label htmlFor="difficulty" className="mr-2">
-            Choose difficulty:
-          </label>
-          <select
-            id="difficulty"
-            value={difficulty}
-            onChange={handleDifficultyChange}
-            className="px-2 py-1 border border-gray-300 rounded-md"
-          >
-            <option value="easy">Easy</option>
-            <option value="medium">Medium</option>
-            <option value="hard">Hard</option>
-            <option value="expert">Expert</option>
-            <option value="insane">Insane</option>
-          </select>
-          <LeaderBoards />
         </div>
       </div>
     </>
