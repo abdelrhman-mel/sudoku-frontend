@@ -68,8 +68,14 @@ const SignInPage = () => {
           onClick={handleSubmit}
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
         >
-          Sign Un
+          Sign Up
         </button>
+        <p>
+          Already signed up?{" "}
+          <Link href="/signin" className="text-blue-500">
+            Sign In
+          </Link>
+        </p>
       </form>
     </>
   );

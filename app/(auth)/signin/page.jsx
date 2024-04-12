@@ -70,13 +70,13 @@ const SignInPage = () => {
         >
           Sign In
         </button>
+        <p>
+          Do not have an account?{" "}
+          <Link href="/signup" className="text-blue-500">
+            Sign Up
+          </Link>
+        </p>
       </form>
-      <div className="mt-4">
-        <p>Do not have an account?</p>
-        <Link href="/signup" className="text-blue-500">
-          Sign Up
-        </Link>
-      </div>
     </>
   );
 };
