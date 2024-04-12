@@ -31,6 +31,7 @@ const Leaderboards = () => {
         <thead>
           <tr>
             <th className="p-2 border">Username</th>
+            <th className="p-2 border">Difficulty</th>
             <th className="p-2 border">Time</th>
           </tr>
         </thead>
@@ -38,6 +39,7 @@ const Leaderboards = () => {
           {topScores.map((score, index) => (
             <tr key={index}>
               <td className="p-2 border">{score.username}</td>
+              <td className="p-2 border">{score.dif}</td>
               <td className="p-2 border">{score.score}</td>
             </tr>
           ))}

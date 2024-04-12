@@ -65,6 +65,7 @@ const IndexPage = () => {
         `${process.env.NEXT_PUBLIC_API_URL}/api/sudoku/scores`,
         {
           username: username,
+          dif: difficulty,
           score: seconds,
         },
         {
@@ -90,6 +91,8 @@ const IndexPage = () => {
       setTimerRunning(false);
       setSeconds(seconds);
       sendScore();
+      //reload the page
+      window.location.reload();
     } else {
       alert("Puzzle is not solved");
       setGameOver(true);
