@@ -49,6 +49,7 @@ const IndexPage = () => {
       .then((response) => {
         console.log(response);
         setPuzzle(response.data.puzzle);
+        setSeconds(300);
       })
       .catch((error) => {
         //make a alert message to the user with the backend response
